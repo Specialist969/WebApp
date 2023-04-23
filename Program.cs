@@ -40,9 +40,9 @@ builder.Services.AddSwaggerGen(c => {
             Url = new Uri("https://adres_strony")
         },
     });
-});
 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
 c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+});
 
 
 app.UseHttpsRedirection();
