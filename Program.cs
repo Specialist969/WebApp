@@ -13,6 +13,19 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<StudentContext>(opt =>
  opt.UseInMemoryDatabase("StudentList"));
 
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Student API V1");
+    });
+    ;
+}
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c => {
@@ -28,25 +41,9 @@ builder.Services.AddSwaggerGen(c => {
         },
     });
 });
-
 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
 c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 
-
-
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Student API V1");
-    });
-    ;
-}
 
 app.UseHttpsRedirection();
 
