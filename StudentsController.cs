@@ -20,6 +20,9 @@ namespace WebApp
             _context = context;
         }
 
+        /// <summary>
+        /// Wyświetl listę studentów
+        /// </summary>
         // GET: api/Students
         [HttpGet]
         public async Task<ActionResult<IEnumerable<StudentDTO>>> GetStudent()
@@ -32,6 +35,9 @@ namespace WebApp
             .Select(x => StudentDTO(x))
             .ToListAsync();
         }
+        /// <summary>
+        /// Wyświetl studenta
+        /// </summary>
         // GET: api/Students/5
         [HttpGet("{id}")]
         public async Task<ActionResult<StudentDTO>> GetStudent(int id)
@@ -78,6 +84,9 @@ namespace WebApp
         //    return student;
         //}
 
+        /// <summary>
+        /// Zmień dane studenta
+        /// </summary>
         // PUT: api/Students/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
