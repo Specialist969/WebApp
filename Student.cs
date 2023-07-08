@@ -1,4 +1,6 @@
-﻿namespace WebApp
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace WebApp
 {
     public class Student
     {
@@ -7,6 +9,6 @@
         public string Surname { get; set; }
         public string? Password { get; set; }
 
-
-    }
+		
+	}
 }
