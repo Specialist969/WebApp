@@ -20,7 +20,18 @@ builder.Services.AddEndpointsApiExplorer(); builder.Services.AddSingleton<JwtSet
 	}); options.AddSecurityRequirement(new OpenApiSecurityRequirement() { { new OpenApiSecurityScheme { Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }, Scheme = "oauth2", Name = "Bearer", In = ParameterLocation.Header, }, new List<string>() } }); options.SwaggerDoc("v1", new OpenApiInfo { Title = "Student API", Description = "demo Student API", Version = "v1", Contact = new OpenApiContact { Name = "Example Contact", Url = new Uri("https://adres_strony") }, });
 });
 
+var app = builder.Build();
 
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+	app.UseSwagger();
+	app.UseSwaggerUI(c =>
+	{
+		c.SwaggerEndpoint("/swagger/v1/swagger.json", "Student API V1");
+	});
+	;
+}
 
 app.MapControllers(); 
 app.AddUsers();
